@@ -24,6 +24,7 @@ class quarto(models.Model):
     valor = models.FloatField(max_length=9999)
     descricao = models.TextField(max_length=255)
     data_reserva = models.DateTimeField(default=datetime.datetime.now)
+    foto_quarto = models.ImageField(upload_to="quartos/")
 
     def __str__(self):
         return self.tipo

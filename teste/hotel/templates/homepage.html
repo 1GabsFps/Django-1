@@ -1,18 +1,16 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block title %}
-    Homepage
+Homepage
 {% endblock %}
 
 
 {% block body%}
-    <img src="{% static '/image/image.png' %}" alt="Hotel Senai">
-    <h1>Hotel Senai!</h1>
-    <p>Seja bem-vindo ao Hotel Senai!</p>
-    <p>Conheça nossos quartos e faça sua reserva!</p>
+{% for hotel in dados_hotel %}
+<img src="{{ hotel.logo.url }}" alt="Logo do hotel">
+{% endfor %} 
 {% endblock %}
 
 {% block footer%}
-    <p>Hotel Senai - 2024</p>
+<p>Hotel Senai - 2024</p>
 {% endblock %}
-
