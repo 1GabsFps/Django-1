@@ -19,6 +19,7 @@ class hotel(models.Model):
 
 
 class quarto(models.Model):
+    titulo = models.CharField(max_length=50)
     tipo = models.CharField(max_length=15, choices=TIPOS_QUARTOS)
     disponibilidade = models.IntegerField()
     valor = models.FloatField(max_length=9999)
