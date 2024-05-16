@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from .models import hotel, quarto
+from .models import hotel, quarto, cadastro
 from .forms import CheckinForm
 
 
@@ -17,17 +17,16 @@ def quartos(request):
     return render(request, "quartos.html", context)
 
 
-def checkin(
-    request,
-):
+def checkin(request):
     if request.method == "POST":
         form = CheckinForm(request.POST)
         if form.is_valid():
             nome = form.cleaned_data["nome"]
             email = form.cleaned_data["email"]
-            return render(
-                request,
-            )
+            user = cadastro(nome=nome, email=email)
+            user.save()
+
+            return HttpResponse("Checkin realizado com sucesso!")
     else:
         form = CheckinForm()
     return render(request, "form.html", {"form": form})
