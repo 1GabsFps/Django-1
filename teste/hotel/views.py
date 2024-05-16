@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
-from .models import hotel
-from .models import quarto
+from .models import hotel, quarto
+from .forms import CheckinForm
 
 
 def homepage(request):
@@ -15,3 +15,19 @@ def quartos(request):
     dados_quartos = quarto.objects.all()
     context["dados_quartos"] = dados_quartos
     return render(request, "quartos.html", context)
+
+
+def checkin(
+    request,
+):
+    if request.method == "POST":
+        form = CheckinForm(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data["nome"]
+            email = form.cleaned_data["email"]
+            return render(
+                request,
+            )
+    else:
+        form = CheckinForm()
+    return render(request, "form.html", {"form": form})
