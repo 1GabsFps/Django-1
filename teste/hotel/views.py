@@ -22,11 +22,20 @@ def checkin(request):
         form = CheckinForm(request.POST)
         if form.is_valid():
             nome = form.cleaned_data["nome"]
+            sobre_nome = form.cleaned_data["sobrenome"]
             email = form.cleaned_data["email"]
-            user = cadastro(nome=nome, email=email)
-            user.save()
+            tipo_quarto = form.cleaned_data["tipo_quarto"]
+            data_reserva = form.cleaned_data["data_reserva"]
+            checkin = cadastro(
+                nome=nome,
+                email=email,
+                tipo_quarto=tipo_quarto,
+                data_reserva=data_reserva,
+                sobrenome=sobre_nome,
+            )
+            checkin.save()
 
             return HttpResponse("Checkin realizado com sucesso!")
     else:
         form = CheckinForm()
-    return render(request, "form.html", {"form": form})
+    return render(request, "checkin.html", {"form": form})
