@@ -31,7 +31,7 @@ class quarto(models.Model):
         return self.tipo
 
 
-class cadastro(models.Model):
+class Checkin(models.Model):
     nome = models.CharField(max_length=20)
     sobrenome = models.CharField(max_length=20)
     email = models.CharField(max_length=50)
